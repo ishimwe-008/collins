@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ADMISSION</title>
+    <style>
+         #a{
+         background: linear-gradient(rgb(77, 183, 190), rgb(121, 250, 250),whitesmoke);
+            height: 70px;
+            width: 1364px;
+            margin-top:-22px;
+            margin-left: -7px;
+        }
+        h2{
+ animation: bounce 2s infinite;
+}
+@keyframes bounce{
+    0%,100%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(8px);
+    }
+}
+a{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-decoration: none;
+    color: black;
+    font-size: large;
+}a:link{
+    background-color: blue;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px;
+    color: red;
+}
+a:visited{
+    background-color: blue;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px;
+}
+a:hover{
+    background-color: blue;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px;
+    color: red;
+}
+a:active{
+    background-color: blue;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px;
+    color: red;
+}
+ .main-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 80px; 
+}.admission-wrapper {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+}
+.card, .success-box {
+            background-color: whitesmoke;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px;
+            color:blue;
+            margin-top: -80px;
+            text-align: center;
+}
+.card-header h2 {
+            color: #004085;
+            margin-bottom: 5px;
+}
+.card-header p {
+            color: #6c757d;
+            font-weight: bold;
+            margin-bottom: 25px;
+}
+.input-field {
+            text-align: left;
+            margin-bottom: 15px;
+ }
+.input-field label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+}
+
+.input-field input, .input-field select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+}
+.submit-btn {
+            background: linear-gradient(to right, #004085, deepskyblue);
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+}
+.submit-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+}
+.icon {
+            font-size: 60px;
+            color: #28a745;
+}
+.E{
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #004085;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+}
+    </style>
+</head>
+<body>   
+ <div id="a"><H2> APEBU NYAMATA TECHINICAL SECONDARY SCHOOL</H2>
+            <pre><a href="index.html">main</a>    <a href="home.html">home</a>    <a href="aboutus.html">aboutus</a>    <a href="academics.html">academics</a>    <a href="services.html">services</a>    <a href="admission.html" style="background-color:brown ;">admission</a>    <a href="gallery.html">gallery</a>    <a href="contactus.html">contactus</a></pre></div><div id="b">    
+    <div class="main-container">
+        <div class="admission-wrapper">
+            <div class="card" id="mainCard">
+                <div class="card-header">
+                    <h1>APEBU NYAMATA TSS</h1>
+                    <p>ADMISSION FORM</p>
+                </div>
+
+                <form id="admissionForm">
+                    <div class="input-field">
+                        <label>YOUR NAME</label>
+                        <input type="text" id="stuName" placeholder="Full Name" required>
+                    </div>
+
+                    <div class="input-field">
+                        <label> YOUR EMAIL</label>
+                        <input type="email" id="stuEmail" placeholder="example@mail.com" required>
+                    </div>
+                    <div class="input-field">
+                        <label>TRADE</label>
+                        <select id="stuLevel" required>
+                            <option value="">CHOOSE YOUR TRADE</option>
+                            <option value="SOFTWARE DEVELOPMENT">SOFTWARE DEVELOPMENT</option>
+                            <option value="MULTIMEDIA PRODUCTION">MULTIMEDIA PRODUCTION</option>
+                            <option value="BUILDING CONSTRUCTION">BUILDING CONSTRUCTION</option>
+                            <option value="TOURISM">TOURISM</option>
+                            <option value="FOOD BEVERAGE OPARATION">FOOD BEVERAGE OPARETION</option>
+                        </select>
+                    </div><button type="submit" class="submit-btn">SUBMIT ADMISSION</button></form></div>
+            <div id="successView" class="success-box" style="display: none;">
+                <div class="icon">✓</div>
+                <h3>SUCCESSFUL!</h3>
+                <p id="resultText" style="margin-top: 15px; line-height: 1.6;"></p>
+                <button onclick="location.reload()" class="E">Back to Form</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const myForm = document.getElementById('admissionForm');
+        const mainCard = document.getElementById('mainCard');
+        const successView = document.getElementById('successView');
+        const resultText = document.getElementById('resultText');
+
+        myForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('stuName').value;
+            const level = document.getElementById('stuLevel').value;
+
+            mainCard.style.display = 'none';
+            successView.style.display = 'block';
+            
+            resultText.innerHTML = "thank you <b>" + name + "</b> to ask for learning <b>" + level + "</b> in APEBU nyamata TSS.";
+        });
+    </script>
+</body>
+</html>
