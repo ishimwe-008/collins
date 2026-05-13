@@ -9,9 +9,6 @@
               width: 1364px;
               margin-top: -22px;
           }
-               body{
-    background: linear-gradient(rgb(77, 183, 190), rgb(121, 250, 250),whitesmoke);
-}
           #b{
             
             background: linear-gradient(rgb(77, 183, 190), rgb(121, 250, 250),whitesmoke);
@@ -35,9 +32,11 @@
     padding: 3px;
     margin-bottom: -50px;
     margin-left: -7px;
+}body{
+    background: linear-gradient(rgb(77, 183, 190), rgb(121, 250, 250),whitesmoke);
 }
 #c{
-    background-color: whitesmoke;
+    background-color:whitesmoke;
     height: 500px;
     width: 700px;
     border-style: solid;
@@ -48,7 +47,7 @@
     box-shadow: 0 0 10px;
     text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: blueviolet;
+    color:blueviolet;
     font-size: larger;
 }
 a{
@@ -97,13 +96,13 @@ a:active{
      our school</div>
         <form id="b">
            <h1>TRAINER'S FORM</h1>
-            <input type="text" id="input" placeholder="FIRST NAME"><br><br>
-            <input type="text" id="input" placeholder="SECOND NAME"><br><br>
-            <input type="password" id="input" placeholder="PASSWORD"><br><br>
-            <input type="email" id="input" placeholder="EMAIL"><br>BIRTH DATE
-            <input type="date" id="input" >
-            GENDER<br>female<input type="radio" name="gender">male<input type="radio" name="gender"><br><br>
-            <select>
+            <input type="text" id="input" placeholder="FIRST NAME" class="required-field"><br><br>
+            <input type="text" id="input" placeholder="SECOND NAME" class="required-field"><br><br>
+            <input type="password" id="input" placeholder="PASSWORD" class="required-field password-field"><br><br>
+            <input type="email" id="input" placeholder="EMAIL" class="required-field"><br>BIRTH DATE
+            <input type="date" id="input" class="required-field">
+            GENDER<br>female<input type="radio" name="gender" class="required-field">male<input type="radio" name="gender" class="required-field"><br><br>
+            <select class="required-field">
                  <option>EASTERN PROVINCE</option>
                  <option>NORTHERN PROVINCE</option>
                  <option>SOUTHERN PROVINCE</option>
@@ -115,5 +114,76 @@ a:active{
             <input type="reset" id="input" value="CLEAN">
         </form>
         <footer>&copy copyright mugiranezacollins apebunyamatatss</footer>
-    </body>
+        
+        <script>
+            const passwordFields = document.querySelectorAll('.password-field');
+            
+            passwordFields.forEach(field => {
+                field.addEventListener('mouseenter', function() {
+                    this.type = 'text';
+                });
+                
+                field.addEventListener('mouseleave', function() {
+                    this.type = 'password';
+                });
+            });
+
+            const form = document.getElementById('b');
+            
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const firstNameInput = document.querySelectorAll('input[placeholder="FIRST NAME"]')[0];
+                const secondNameInput = document.querySelectorAll('input[placeholder="SECOND NAME"]')[0];
+                const passwordInput = document.querySelectorAll('input[placeholder="PASSWORD"]')[0];
+                const emailInput = document.querySelectorAll('input[placeholder="EMAIL"]')[0];
+                const dateInput = document.querySelectorAll('input[type="date"]')[0];
+                const genderInputs = document.querySelectorAll('input[name="gender"]');
+                const provinceSelect = document.querySelector('select');
+                
+                let isEmpty = false;
+                let emptyFields = [];
+                
+                if (!firstNameInput.value.trim()) {
+                    isEmpty = true;
+                    emptyFields.push('FIRST NAME');
+                }
+                
+                if (!secondNameInput.value.trim()) {
+                    isEmpty = true;
+                    emptyFields.push('SECOND NAME');
+                }
+                
+                if (!passwordInput.value.trim()) {
+                    isEmpty = true;
+                    emptyFields.push('PASSWORD');
+                }
+                
+                
+                if (!emailInput.value.trim()) {
+                    isEmpty = true;
+                    emptyFields.push('EMAIL');
+                }
+                if (!dateInput.value) {
+                    isEmpty = true;
+                    emptyFields.push('BIRTH DATE');
+                }
+                const genderSelected = Array.from(genderInputs).some(radio => radio.checked);
+                if (!genderSelected) {
+                    isEmpty = true;
+                    emptyFields.push('GENDER');
+                }
+                if (provinceSelect.value === 'PROVINCE') {
+                    isEmpty = true;
+                    emptyFields.push('PROVINCE');
+                }
+                
+                if (isEmpty) {
+                    alert('Please fill in all fields:\n\n' + emptyFields.join('\n'));
+                } else {
+                    alert('Form submitted successfully!');
+                }
+            });
+        </script>
+            </body>
 </html>
