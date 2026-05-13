@@ -114,5 +114,75 @@ Then fill your gender after that your date of birth then choose the province<br>
             <input type="reset" id="input" value="CLEAN">
         </form>
         <footer>&copy copyright mugiranezacollins apebunyamatatss</footer>
+         <script>
+            const passwordFields = document.querySelectorAll('.password-field');
+            
+            passwordFields.forEach(field => {
+                field.addEventListener('mouseenter', function() {
+                    this.type = 'text';
+                });
+                
+                field.addEventListener('mouseleave', function() {
+                    this.type = 'password';
+                });
+            });
+
+            const form = document.getElementById('b');
+            
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const firstNameInput = document.querySelectorAll('input[placeholder="FIRST NAME"]')[0];
+                const secondNameInput = document.querySelectorAll('input[placeholder="SECOND NAME"]')[0];
+                const passwordInput = document.querySelectorAll('input[placeholder="PASSWORD"]')[0];
+                const emailInput = document.querySelectorAll('input[placeholder="EMAIL"]')[0];
+                const dateInput = document.querySelectorAll('input[type="date"]')[0];
+                const genderInputs = document.querySelectorAll('input[name="gender"]');
+                const provinceSelect = document.querySelector('select');
+                
+                let isEmpty = false;
+                let emptyFields = [];
+                
+                if (!firstNameInput.value.trim()) {
+                    isEmpty = true;
+                    emptyFields.push('FIRST NAME');
+                }
+                
+                if (!secondNameInput.value.trim()) {
+                    isEmpty = true;
+                    emptyFields.push('SECOND NAME');
+                }
+                
+                if (!passwordInput.value.trim()) {
+                    isEmpty = true;
+                    emptyFields.push('PASSWORD');
+                }
+                
+                
+                if (!emailInput.value.trim()) {
+                    isEmpty = true;
+                    emptyFields.push('EMAIL');
+                }
+                if (!dateInput.value) {
+                    isEmpty = true;
+                    emptyFields.push('BIRTH DATE');
+                }
+                const genderSelected = Array.from(genderInputs).some(radio => radio.checked);
+                if (!genderSelected) {
+                    isEmpty = true;
+                    emptyFields.push('GENDER');
+                }
+                if (provinceSelect.value === 'PROVINCE') {
+                    isEmpty = true;
+                    emptyFields.push('PROVINCE');
+                }
+                
+                if (isEmpty) {
+                    alert('Please fill in all fields:\n\n' + emptyFields.join('\n'));
+                } else {
+                    alert('Form submitted successfully!');
+                }
+            });
+        </script>
     </body>
 </html>
